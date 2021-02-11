@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     },
     headerTitle:{
        color: 'white',
-       fontSize: FONTS.h1
+       fontSize: FONTS.h1,
+       fontFamily: 'Orbitron'
     }
 });
 

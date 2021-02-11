@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: FONTS.h1,
         marginVertical: 10,
-        fontFamily: 'Orbitron'
+        fontFamily: 'open-sans-bold'
 
     },
     inputContainer: {
