@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
+import { View, 
+    Text, 
+    StyleSheet, 
+    Button, 
+    TouchableWithoutFeedback, 
+    Keyboard, 
+    Alert } from "react-native";
 
 import Card from '../components/Card';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
-
+import BodyText from '../components/textsStyles/BodyText';
 
 import COLORS from '../constants/colors';
 import FONTS from '../constants/fonts';
@@ -27,7 +33,12 @@ const StartGameScreen = props => {
 
     const confirmInputHandler = () => {
         const chosenNumber = parseInt(enteredValue);
-        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+        if (
+            isNaN(chosenNumber) || 
+            chosenNumber <= 0 || 
+            chosenNumber > 99
+            ) 
+        {
             Alert.alert('Warning',
                 'Enter a number between 1-99,',
                 [{
@@ -61,7 +72,9 @@ const StartGameScreen = props => {
                     <Button
                         title='Start game'
                         color={COLORS.primary}
-                        onPress={() => props.onStartGame(selectedNumber)} />
+                        onPress={
+                            () => props.onStartGame(selectedNumber)
+                        }/>
                 </View>
 
             </Card>
@@ -72,9 +85,13 @@ const StartGameScreen = props => {
             Keyboard.dismiss
         }}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a new game</Text>
+                <BodyText style={styles.title}>
+                    Start a new game
+                </BodyText>
                 <Card style={styles.inputContainer}>
-                    <Text style={styles.inputTitle}>Select a number!</Text>
+                    <Text style={styles.inputTitle}>
+                        Select a number!
+                    </Text>
                     <Input
                         blurOnSubmit
                         autoCapitalize='none'

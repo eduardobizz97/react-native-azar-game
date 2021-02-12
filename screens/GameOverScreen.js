@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
+import TitleText from '../components/textsStyles/TitleText';
 
 import COLORS from '../constants/colors';
 import FONTS from '../constants/fonts';
@@ -10,14 +11,20 @@ import FONTS from '../constants/fonts';
 const GameOverScreen = props => {
     return (
         <View style={styles.screen}>
-            <Text style={styles.outputText}>The game is over!</Text>
-            <Text style={styles.outputText}>Number of rounds: {props.roundsNumber}</Text>
-            <Text style={styles.outputText}>The number was:</Text>
+            <TitleText style={styles.outputText}>
+                The game is over!
+            </TitleText>
+            <TitleText style={styles.outputText}>
+                Number of rounds: {props.roundsNumber}
+            </TitleText>
+            <TitleText style={styles.outputText}>
+                The number was:
+            </TitleText>
             <Card style={styles.numberChosen}>
                 <NumberContainer>
                     {props.userChoice}
                 </NumberContainer>
-                <Button color={COLORS.primary} onPress={props.onNewGame} title='Restart Game'/>
+                <Button color={COLORS.primary} onPress={props.onNewGame} title='Restart Game' />
             </Card>
         </View>
     );
@@ -25,11 +32,11 @@ const GameOverScreen = props => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex:1,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    outputText:{
+    outputText: {
         fontSize: FONTS.h1,
         color: COLORS.primary
     },
