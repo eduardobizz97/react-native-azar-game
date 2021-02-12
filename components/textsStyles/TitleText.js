@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import FONTS from '../../constants/fonts';
+import FONTS from '../../constants/fontsSizes';
 
 const TitleText = props => {
     return (

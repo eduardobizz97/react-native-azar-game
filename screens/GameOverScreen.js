@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View, Image } from 'react-native';
 
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
 import TitleText from '../components/textsStyles/TitleText';
 
 import COLORS from '../constants/colors';
-import FONTS from '../constants/fonts';
+import FONTS from '../constants/fontsSizes';
 
 const GameOverScreen = props => {
     return (
@@ -14,6 +14,13 @@ const GameOverScreen = props => {
             <TitleText style={styles.outputText}>
                 The game is over!
             </TitleText>
+            <View style={styles.imageContainer}>
+                <Image
+                    source={require("../assets/images/success.png")}
+                    style={styles.image}
+                    resizeMode="cover"
+                />
+            </View>
             <TitleText style={styles.outputText}>
                 Number of rounds: {props.roundsNumber}
             </TitleText>
@@ -44,6 +51,19 @@ const styles = StyleSheet.create({
         width: 300,
         padding: 20,
         marginVertical: 25
+    },
+    imageContainer: {
+        width: 300,
+        height: 300,
+        borderRadius:200,
+        borderWidth: 3,
+        borderColor: 'black',
+        overflow: 'hidden',
+        marginVertical: 30
+    },
+    image: {
+        width: '100%',
+        height: '100%'
     }
 });
 

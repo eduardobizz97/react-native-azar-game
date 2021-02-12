@@ -26,9 +26,9 @@ export default function App() {
     return (
       <AppLoading
         startAsync={fetchFonts}
-        onFinish={() => { setDataLoaded(true) }} 
-        onError={()=>{console.log(err)}}
-        />
+        onFinish={() => { setDataLoaded(true) }}
+        onError={() => { console.log(err) }}
+      />
     );;
   }
 
@@ -48,11 +48,18 @@ export default function App() {
   };
 
   let content = <StartGameScreen onStartGame={startGameHandler} />;
+  content = <GameOverScreen
+    roundsNumber={1}
+    userChoice={1}
+    onNewGame={configureNewGameHandler} />
 
   if (userNumber && guessRounds <= 0) {
     content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
   } else if (guessRounds > 0) {
-    content = <GameOverScreen roundsNumber={guessRounds} userChoice={userNumber} onNewGame={configureNewGameHandler} />
+    content = <GameOverScreen
+      roundsNumber={guessRounds}
+      userChoice={userNumber}
+      onNewGame={configureNewGameHandler} />
   }
 
 
@@ -69,5 +76,6 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1
-  }
+  },
+
 });

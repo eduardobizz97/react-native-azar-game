@@ -13,7 +13,7 @@ import NumberContainer from '../components/NumberContainer';
 import BodyText from '../components/textsStyles/BodyText';
 
 import COLORS from '../constants/colors';
-import FONTS from '../constants/fonts';
+import FONTS from '../constants/fontsSizes';
 
 const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
