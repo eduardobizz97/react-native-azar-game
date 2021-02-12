@@ -16,7 +16,9 @@ const GameOverScreen = props => {
             </TitleText>
             <View style={styles.imageContainer}>
                 <Image
-                    source={require("../assets/images/success.png")}
+                    // source={require("../assets/images/success.png")}
+                    fadeDuration={300}
+                    source={{uri: 'https://stillmedab.olympic.org/media/Images/OlympicOrg/News/2019/12/11/2019-12-11-mountain-day-featured-01.jpg?interpolation=lanczos-none&resize=*:*'}}
                     style={styles.image}
                     resizeMode="cover"
                 />
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: 300,
         height: 300,
-        borderRadius:200,
+        borderRadius: 200,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',
