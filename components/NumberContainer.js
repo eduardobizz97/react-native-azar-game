@@ -7,7 +7,7 @@ import FONTS from '../constants/fontsSizes';
 const NumberContainer = props => {
     return (
         <View style={styles.container}>
-            <Text style={styles.textNumber}>
+            <Text style={[styles.textNumber,props.style]}>
                 {props.children}
             </Text>
         </View>

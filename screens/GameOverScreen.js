@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, View, Image } from 'react-native';
+import { Button, StyleSheet, View, Text, Image } from 'react-native';
 
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
@@ -18,22 +18,23 @@ const GameOverScreen = props => {
                 <Image
                     // source={require("../assets/images/success.png")}
                     fadeDuration={300}
-                    source={{uri: 'https://stillmedab.olympic.org/media/Images/OlympicOrg/News/2019/12/11/2019-12-11-mountain-day-featured-01.jpg?interpolation=lanczos-none&resize=*:*'}}
+                    source={{ uri: 'https://stillmedab.olympic.org/media/Images/OlympicOrg/News/2019/12/11/2019-12-11-mountain-day-featured-01.jpg?interpolation=lanczos-none&resize=*:*' }}
                     style={styles.image}
                     resizeMode="cover"
                 />
             </View>
             <TitleText style={styles.outputText}>
-                Number of rounds: {props.roundsNumber}
+                Your phone needed <Text style={styles.highlight}>{props.roundsNumber}</Text> round(s) to guess the number
             </TitleText>
-            <TitleText style={styles.outputText}>
-                The number was:
-            </TitleText>
+
             <Card style={styles.numberChosen}>
-                <NumberContainer>
+                <TitleText style={styles.outputText}>
+                    The number was:
+                </TitleText>
+                <NumberContainer style={styles.highlight}>
                     {props.userChoice}
                 </NumberContainer>
-                <Button color={COLORS.primary} onPress={props.onNewGame} title='Restart Game' />
+                <Button color={COLORS.primary} onPress={props.onNewGame} title='New game' />
             </Card>
         </View>
     );
@@ -46,13 +47,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     outputText: {
+        marginVertical: 5,
         fontSize: FONTS.h1,
-        color: COLORS.primary
+        color: COLORS.primary,
+        textAlign: 'center'
     },
     numberChosen: {
         width: 300,
         padding: 20,
-        marginVertical: 25
+        marginVertical: 15
     },
     imageContainer: {
         width: 300,
@@ -66,6 +69,9 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%'
+    },
+    highlight: {
+        color: COLORS.secondary
     }
 });
 

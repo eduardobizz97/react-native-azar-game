@@ -4,8 +4,9 @@ import FONTS from '../../constants/fontsSizes';
 
 const TitleText = props => {
     return (
-
-        <Text style={[styles.title, props.style]}>{props.children}</Text>
+        <View>
+            <Text style={[styles.title, props.style]}>{props.children}</Text>
+        </View>
 
     );
 };

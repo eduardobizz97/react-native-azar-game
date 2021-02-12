@@ -9,6 +9,7 @@ import { View,
 
 import Card from '../components/Card';
 import Input from '../components/Input';
+import MainButton from '../components/MainButton';
 import NumberContainer from '../components/NumberContainer';
 import BodyText from '../components/textsStyles/BodyText';
 
@@ -69,12 +70,12 @@ const StartGameScreen = props => {
                     {selectedNumber}
                 </NumberContainer>
                 <View style={styles.startButton} >
-                    <Button
-                        title='Start game'
+                    <MainButton
                         color={COLORS.primary}
-                        onPress={
-                            () => props.onStartGame(selectedNumber)
-                        }/>
+                        onPress={() => props.onStartGame(selectedNumber)}
+                    >
+                        Start game
+                    </MainButton>
                 </View>
 
             </Card>
