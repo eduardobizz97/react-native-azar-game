@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
@@ -75,12 +76,12 @@ const GameScreen = props => {
                     <MainButton
                         color={COLORS.secondary}
                         onPress={nextGuessHandler.bind(this, 'lower')}>
-                        Lower
+                        <Ionicons name="md-remove" size={24} color="white"/>
                     </MainButton>
                     <MainButton
                         color={COLORS.primary}
                         onPress={nextGuessHandler.bind(this, 'greater')}>
-                        Greater
+                        <Ionicons name="add" size={24} color="white"/>
                     </MainButton>
                 </View>
             </Card>
