@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, 
-    Text, 
-    StyleSheet, 
-    Button, 
-    TouchableWithoutFeedback, 
-    Keyboard, 
-    Alert } from "react-native";
+import {
+    View,
+    Text,
+    StyleSheet,
+    Button,
+    TouchableWithoutFeedback,
+    Keyboard,
+    Alert
+} from "react-native";
 
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -21,7 +23,7 @@ const StartGameScreen = props => {
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
 
-    
+
     const numberInputHandler = inputText => {
 
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -35,11 +37,10 @@ const StartGameScreen = props => {
     const confirmInputHandler = () => {
         const chosenNumber = parseInt(enteredValue);
         if (
-            isNaN(chosenNumber) || 
-            chosenNumber <= 0 || 
+            isNaN(chosenNumber) ||
+            chosenNumber <= 0 ||
             chosenNumber > 99
-            ) 
-        {
+        ) {
             Alert.alert('Warning',
                 'Enter a number between 1-99,',
                 [{
@@ -105,16 +106,18 @@ const StartGameScreen = props => {
                     />
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
-                            <Button
-                                title='Reset'
+                            <MainButton
                                 onPress={resetInputHandler}
-                                color={COLORS.opcional} />
+                                color={COLORS.opcional}>
+                                Reset
+                            </MainButton>
                         </View>
                         <View style={styles.button}>
-                            <Button
-                                title='Confirm'
+                            <MainButton
                                 onPress={confirmInputHandler}
-                                color={COLORS.secondary} />
+                                color={COLORS.secondary} >
+                                Confirm
+                            </MainButton>
                         </View>
                     </View>
                 </Card>
@@ -141,9 +144,10 @@ const styles = StyleSheet.create({
     inputContainer: {
         padding: 30,
         width: 300,
-        maxWidth: '80%',
         alignItems: 'center',
-
+        alignContent: 'center',
+        justifyContent: 'center',
+        
     },
     inputTitle: {
         fontSize: FONTS.h3
@@ -154,13 +158,10 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-evenly',
-        paddingHorizontal: 15
-    },
-    button: {
-        width: 100,
-
+        justifyContent: 'space-around',
+        width: 400,
+        maxWidth: '90%',
+        paddingHorizontal: 15,
     },
     output: {
         padding: 10,

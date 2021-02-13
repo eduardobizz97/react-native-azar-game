@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Button, StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import BodyText from '../components/textsStyles/BodyText';
+import MainButton from '../components/MainButton';
+import COLORS from '../constants/colors';
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -62,19 +64,25 @@ const GameScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <BodyText>
-                Opponent's guess
-            </BodyText>
-            <NumberContainer>
-                {currentGuess}
-            </NumberContainer>
-            <Card style={styles.buttonContainer}>
-                <Button
-                    title='Lower'
-                    onPress={nextGuessHandler.bind(this, 'lower')} />
-                <Button
-                    title='Greater'
-                    onPress={nextGuessHandler.bind(this, 'greater')} />
+            <Card style={styles.container}>
+                <BodyText>
+                    Opponent's guess
+                </BodyText>
+                <NumberContainer>
+                    {currentGuess}
+                </NumberContainer>
+                <View style={styles.gameButtons}>
+                    <MainButton
+                        color={COLORS.secondary}
+                        onPress={nextGuessHandler.bind(this, 'lower')}>
+                        Lower
+                    </MainButton>
+                    <MainButton
+                        color={COLORS.primary}
+                        onPress={nextGuessHandler.bind(this, 'greater')}>
+                        Greater
+                    </MainButton>
+                </View>
             </Card>
         </View>
     );
@@ -86,12 +94,20 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center'
     },
-    buttonContainer: {
+    container: {
+
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        padding: 10,
+        width: 300,
+        
+    },
+    gameButtons: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 20,
-        width: 300,
-        maxWidth: '80%'
+        width: '100%',
+        marginTop: 20
     }
 });
 

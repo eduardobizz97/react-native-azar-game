@@ -4,14 +4,17 @@ import { StyleSheet, Text, View, TouchableOpacity, Touchable } from 'react-nativ
 import COLORS from '../constants/colors';
 
 const MainButton = (props) => {
-    return (<TouchableOpacity onPress={props.onPress}>
-        <View style={[styles.button,props.style]}>
-            <Text style={styles.buttonText}>
-                {props.children}
 
-            </Text>
-        </View>
-    </TouchableOpacity>);
+    return (
+        <TouchableOpacity activeOpacity={0.6} onPress={props.onPress}>
+            <View style={[styles.button, props.style,{backgroundColor: props.color}]}>
+                <Text style={styles.buttonText}>
+                    {props.children}
+
+                </Text>
+            </View>
+        </TouchableOpacity>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -21,7 +24,6 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 30,
         borderRadius: 40,
-        transform: ''
     },
     buttonText: {
         color: 'white',
