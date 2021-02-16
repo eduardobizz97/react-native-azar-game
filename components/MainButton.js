@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 30,
         borderRadius: 40,
+        
     },
     buttonText: {
         color: 'white',
         fontFamily: 'open-sans',
-        fontSize: 18
+        fontSize: 18,
+        textAlign: 'center'
     }
 });
 
