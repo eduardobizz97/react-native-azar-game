@@ -153,15 +153,15 @@ const styles = StyleSheet.create({
         fontSize: FONTS.h3
     },
     textInput: {
-        maxWidth: 50,
+        maxWidth: 200,
         textAlign: 'center'
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: 400,
+        justifyContent: 'center',
+        width: 300,
         maxWidth: '90%',
-        paddingHorizontal: 15,
+        
     },
     output: {
         padding: 10,
