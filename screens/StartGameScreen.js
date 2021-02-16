@@ -6,7 +6,8 @@ import {
     Button,
     TouchableWithoutFeedback,
     Keyboard,
-    Alert
+    Alert,
+    Dimensions
 } from "react-native";
 
 import Card from '../components/Card';
@@ -105,15 +106,17 @@ const StartGameScreen = props => {
                         style={styles.textInput}
                     />
                     <View style={styles.buttonContainer}>
-                        <View style={styles.button}>
+                        <View>
                             <MainButton
+                                style={styles.button}
                                 onPress={resetInputHandler}
                                 color={COLORS.opcional}>
                                 Reset
                             </MainButton>
                         </View>
-                        <View style={styles.button}>
+                        <View>
                             <MainButton
+                                style={styles.button}
                                 onPress={confirmInputHandler}
                                 color={COLORS.secondary} >
                                 Confirm
@@ -142,12 +145,13 @@ const styles = StyleSheet.create({
 
     },
     inputContainer: {
-        padding: 30,
-        width: 300,
+        padding: 20,
+        width: '80%',
+        minWidth: 300,
+        maxWidth: '95%',
         alignItems: 'center',
-        alignContent: 'center',
         justifyContent: 'center',
-        
+
     },
     inputTitle: {
         fontSize: FONTS.h3
@@ -158,9 +162,13 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'center',
-        width: 300,
-        maxWidth: '90%',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+    },
+    button: { 
+        minWidth: '25%'
+        
         
     },
     output: {
