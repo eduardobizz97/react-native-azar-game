@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, View, Alert, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, Alert, ScrollView, Text, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import NumberContainer from '../components/NumberContainer';
@@ -19,6 +19,16 @@ const generateRandomBetween = (min, max, exclude) => {
         return rndNum;
     }
 };
+
+const renderListItem = (listLength, itemData) => (
+
+    <View style={styles.listItem}>
+        <BodyText>#{listLength - itemData.index}</BodyText>
+        <BodyText>
+            {itemData.item}
+        </BodyText>
+    </View>
+);
 
 const GameScreen = props => {
     const initialGuess = generateRandomBetween(1, 100, props.userChoise)
@@ -86,19 +96,15 @@ const GameScreen = props => {
                 </View>
             </Card>
             <View style={styles.listConstainer}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
-                    {pastGuesses.map(guess => {
-                        return (
-                            <View>
-                                <Text>
-                                    {guess}
-                                </Text>
-                            </View>
-
-                        );
-
-                    })}
-                </ScrollView>
+                {/* {<ScrollView contentContainerStyle={styles.scrollView}>
+                    {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}
+                </ScrollView>} */}
+                <FlatList
+                    keyExtractor={item => item}
+                    data={pastGuesses}
+                    renderItem={renderListItem.bind(this, pastGuesses.length)}
+                    contentContainerStyle={styles.scrollView}
+                />
             </View>
         </View>
     );
@@ -128,12 +134,12 @@ const styles = StyleSheet.create({
     listConstainer: {
         flex: 1,
 
-        width: '80%'
+        width: '60%'
     },
     scrollView: {
-        paddingBottom: 100,
+        paddingBottom: 20,
         flexGrow: 1,
-        alignItems: 'center',
+        
         justifyContent: 'flex-start'
 
     },
@@ -145,8 +151,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '60%'
+        justifyContent: 'space-around',
+        width: '100%'
     }
 });
 
