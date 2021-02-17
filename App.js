@@ -9,7 +9,7 @@ import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 
 const fetchFonts = () => {
-  Font.loadAsync({
+  return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
     'Orbitron': require('./assets/fonts/Orbitron-VariableFont_wght.ttf')
@@ -25,11 +25,11 @@ export default function App() {
   if (!dataLoaded) {
     return (
       <AppLoading
-        startAsync={fetchFonts}
+        startAsync={ fetchFonts }
         onFinish={() => { setDataLoaded(true) }}
-        onError={() => { console.log(err) }}
+        onError={err => { console.log(err) }}
       />
-    );;
+    );
   }
 
   const configureNewGameHandler = () => {
