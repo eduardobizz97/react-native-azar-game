@@ -1,8 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import COLORS from '../../constants/colors';
 import FONTS from '../../constants/fontsSizes';
 
+
+const fontColor = () => {
+    if (Platform.OS === 'android') {
+        return 'white';
+    } else if (Platform.OS === 'ios') {
+        return COLORS.primary
+    } else {
+        return 'white';
+    }
+};
+
 const TitleText = props => {
+
     return (
         <View>
             <Text style={[styles.title, props.style]}>{props.children}</Text>
@@ -14,7 +27,7 @@ const TitleText = props => {
 const styles = StyleSheet.create({
 
     title: {
-        color: 'white',
+        color: fontColor(),
         fontSize: FONTS.h1,
         fontFamily: 'Orbitron'
     }

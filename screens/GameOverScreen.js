@@ -35,6 +35,7 @@ const GameOverScreen = props => {
     let imageContainerLandscapeMode = {};
 
     if(availableDeviceWidth > 412) {
+        
         imageContainerLandscapeMode = {
             width: availableDeviceWidth * 0.5,
             height: availableDeviceWidth * 0.5,
@@ -43,11 +44,24 @@ const GameOverScreen = props => {
         };
     }
 
+    if (availableDeviceWidth > 1000) {
+
+        imageContainerLandscapeMode = {
+            width: availableDeviceWidth * 0.2,
+            height: availableDeviceWidth * 0.2,
+            borderRadius: (availableDeviceWidth * 0.7) / 2,
+            marginVertical: availableDeviceHeight / 30,
+            borderColor: 'black',
+        };
+    }      
+    
+
     return (
         <ScrollView>
             <View style={styles.screen}>
                 <TitleText style={styles.outputText}>
                     The game is over!
+                    {availableDeviceWidth > 1000 ? 'si' : 'no'}
             </TitleText>
                 <View style={[styles.imageContainer, imageContainerLandscapeMode]}>
                     <Image
