@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, StyleSheet, View, Text, Image, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Button, StyleSheet, View, Text, Image, Dimensions, ScrollView } from 'react-native';
 
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
@@ -10,41 +10,76 @@ import COLORS from '../constants/colors';
 import FONTS from '../constants/fontsSizes';
 
 const GameOverScreen = props => {
+
+    const [availableDeviceWidth, setAvailableDeviceWidth] = useState(
+        Dimensions.get('window').width
+    );
+
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(
+        Dimensions.get('window').height
+    );
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setAvailableDeviceWidth(Dimensions.get('window').width);
+            setAvailableDeviceHeight(Dimensions.get('window').height);
+        };
+
+        Dimensions.addEventListener('change', updateLayout);
+
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout);
+        };
+    });
+
+    let imageContainerLandscapeMode = {};
+
+    if(availableDeviceWidth > 412) {
+        imageContainerLandscapeMode = {
+            width: availableDeviceWidth * 0.5,
+            height: availableDeviceWidth * 0.5,
+            borderRadius: (availableDeviceWidth * 0.7) / 2,
+            marginVertical: availableDeviceHeight / 30
+        };
+    }
+
     return (
-        <View style={styles.screen}>
-            <TitleText style={styles.outputText}>
-                The game is over!
+        <ScrollView>
+            <View style={styles.screen}>
+                <TitleText style={styles.outputText}>
+                    The game is over!
             </TitleText>
-            <View style={styles.imageContainer}>
-                <Image
-                    // source={require("../assets/images/success.png")}
-                    fadeDuration={300}
-                    source={{ uri: 'https://stillmedab.olympic.org/media/Images/OlympicOrg/News/2019/12/11/2019-12-11-mountain-day-featured-01.jpg?interpolation=lanczos-none&resize=*:*' }}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
-            </View>
-            <TitleText style={styles.outputText}>
-                Your phone needed <Text style={styles.highlight}>{props.roundsNumber}</Text> round(s) to guess the number
+                <View style={[styles.imageContainer, imageContainerLandscapeMode]}>
+                    <Image
+                        // source={require("../assets/images/success.png")}
+                        fadeDuration={300}
+                        source={{ uri: 'https://stillmedab.olympic.org/media/Images/OlympicOrg/News/2019/12/11/2019-12-11-mountain-day-featured-01.jpg?interpolation=lanczos-none&resize=*:*' }}
+                        style={styles.image}
+                        resizeMode="cover"
+                    />
+                </View>
+                <TitleText style={styles.outputText}>
+                    Your phone needed <Text style={styles.highlight}>{props.roundsNumber}</Text> round(s) to guess the number
             </TitleText>
 
-            <Card style={styles.numberChosenContainer}>
-                <TitleText style={styles.outputText}>
-                    The number was:
+                <Card style={styles.numberChosenContainer}>
+                    <TitleText style={styles.outputText}>
+                        The number was:
                 </TitleText>
-                <NumberContainer style={styles.highlight}>
-                    {props.userChoice}
-                </NumberContainer>
-                <MainButton
-                    style={styles.newGameButton}
-                    color={COLORS.primary}
-                    onPress={props.onNewGame}
+                    <NumberContainer style={styles.highlight}>
+                        {props.userChoice}
+                    </NumberContainer>
+                    <MainButton
+                        style={styles.newGameButton}
+                        color={COLORS.primary}
+                        onPress={props.onNewGame}
                     >
-                    New game
+                        New game
 
                 </MainButton>
-            </Card>
-        </View>
+                </Card>
+            </View>
+        </ScrollView>
     );
 };
 
@@ -58,11 +93,11 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: Dimensions.get('window').width * 0.7,
         height: Dimensions.get('window').width * 0.7,
-        borderRadius: Dimensions.get('window').width * 0.7 /2,
+        borderRadius: Dimensions.get('window').width * 0.7 / 2,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',
-        marginVertical: Dimensions.get('window').height /20
+        marginVertical: Dimensions.get('window').height / 20
     },
     image: {
         width: '100%',
@@ -72,7 +107,7 @@ const styles = StyleSheet.create({
         width: 300,
         padding: 20,
         marginVertical: 15,
-        marginVertical: Dimensions.get('window').height /60
+        marginVertical: Dimensions.get('window').height / 60
     },
     highlight: {
         color: COLORS.secondary
@@ -84,7 +119,7 @@ const styles = StyleSheet.create({
         color: COLORS.primary,
         textAlign: 'center'
     },
-    newGameButton:{
+    newGameButton: {
         marginVertical: 10
     }
 });
