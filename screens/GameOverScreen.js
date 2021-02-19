@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, View, Text, Image, Dimensions, ScrollView } from 'react-native';
+import {
+    Button,
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    Dimensions,
+    ScrollView,
+    SafeAreaView
+} from 'react-native';
 
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
@@ -34,8 +43,8 @@ const GameOverScreen = props => {
 
     let imageContainerLandscapeMode = {};
 
-    if(availableDeviceWidth > 412) {
-        
+    if (availableDeviceWidth > 412) {
+
         imageContainerLandscapeMode = {
             width: availableDeviceWidth * 0.5,
             height: availableDeviceWidth * 0.5,
@@ -53,16 +62,17 @@ const GameOverScreen = props => {
             marginVertical: availableDeviceHeight / 30,
             borderColor: 'black',
         };
-    }      
-    
+    }
+
 
     return (
+
         <ScrollView>
             <View style={styles.screen}>
                 <TitleText style={styles.outputText}>
                     The game is over!
                     {availableDeviceWidth > 1000 ? 'si' : 'no'}
-            </TitleText>
+                </TitleText>
                 <View style={[styles.imageContainer, imageContainerLandscapeMode]}>
                     <Image
                         // source={require("../assets/images/success.png")}
@@ -94,6 +104,7 @@ const GameOverScreen = props => {
                 </Card>
             </View>
         </ScrollView>
+
     );
 };
 
